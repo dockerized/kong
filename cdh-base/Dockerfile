@@ -12,7 +12,7 @@ RUN curl http://archive.cloudera.com/cm5/ubuntu/trusty/amd64/cm/cloudera.list > 
 COPY cloudera-gplextras.list /etc/apt/sources.list.d/
 
 RUN apt-get update -yq
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -yq apt-transport-https
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -yq ssh apt-transport-https
 
 # https://github.com/Yelp/dumb-init
 RUN curl -fLsS -o /usr/local/bin/dumb-init https://github.com/Yelp/dumb-init/releases/download/v1.0.2/dumb-init_1.0.2_amd64 && chmod +x /usr/local/bin/dumb-init
