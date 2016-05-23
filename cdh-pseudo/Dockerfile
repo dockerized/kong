@@ -5,8 +5,8 @@ MAINTAINER Tony.Shao <xiocode@gmail.com>
 WORKDIR /
 
 # Install CDH package and dependencies
-RUN apt-get update -yq
-RUN apt-get install -y zookeeperd && \
+RUN apt-get update -y && \
+    apt-get install -y zookeeperd && \
     apt-get install -y hadoop-conf-pseudo && \
     apt-get install -y oozie && \
     apt-get install -y python-pip && \
