@@ -12,6 +12,7 @@ RUN apt-get update -y && \
     apt-get install -y python-pip && \
     apt-get install -y hue && \
     apt-get install -y hue-plugins && \
+    apt-get install -y unzip && \
     apt-get install -y spark-core spark-history-server spark-python
 
 # Copy updated config files
