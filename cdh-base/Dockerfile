@@ -9,7 +9,7 @@ RUN curl http://archive.cloudera.com/cm5/ubuntu/trusty/amd64/cm/archive.key | ap
 RUN curl http://archive.cloudera.com/cm5/ubuntu/trusty/amd64/cm/cloudera.list > /etc/apt/sources.list.d/cloudera-manager.list
 
 # LZO Repo
-RUN curl https://archive.cloudera.com/gplextras5/ubuntu/trusty/amd64/gplextras/cloudera-gplextras.list > /etc/apt/sources.list.d/gplextras.list
+RUN curl https://archive.cloudera.com/gplextras5/ubuntu/trusty/amd64/gplextras/cloudera-gplextras.list > /etc/apt/sources.list.d/cloudera-gplextras.list
 
 RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -yq apt-transport-https
