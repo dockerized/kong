@@ -1,0 +1,101 @@
+version: "2"
+volumes:
+  hadoop_data:
+      driver: local
+  zk01_data:
+      driver: local
+  zk02_data:
+      driver: local
+services:
+  zk01:
+    image: mesoscloud/zookeeper:3.4.8-ubuntu-14.04
+    environment:
+      MYID: 1
+      SERVERS: zk01,zk02
+    ports:
+      - "2181:2181"
+    volumes:
+      - zk01_data:/tmp/zookeeper
+    networks:
+      - back-tier
+  zk02:
+    image: mesoscloud/zookeeper:3.4.8-ubuntu-14.04
+    environment:
+      MYID: 2
+      SERVERS: zk01,zk02
+    ports:
+      - "2181:2181"
+    volumes:
+      - zk02_data:/tmp/zookeeper
+    networks:
+      - back-tier
+  datanode:
+    image: xiocode/cdn-datanode
+    volumes:
+      - hadoop_data:/var/lib/influxdb/
+    networks:
+      - back-tier
+  telegraf:
+    image: xiocode/telegraf
+    depends_on:
+      - influxdb
+    ports:
+      - "18092:8092"
+      - "18094:8094"
+      - "18125:8125"
+    volumes:
+      - ./telegraf/:/etc/telegraf/
+    networks:
+      - back-tier
+    command:
+      - "telegraf"
+      - "-config"
+      - "/etc/telegraf/telegraf.conf"
+      - "-config-directory"
+      - "/etc/telegraf/telegraf.d"
+  kapacitor:
+    image: xiocode/kapacitor
+    depends_on:
+      - influxdb
+    ports:
+      - "19092:9092"
+    volumes:
+      - kapacitor_data:/var/lib/kapacitor/
+      - ./kapacitor/:/etc/kapacitor/
+    command:
+      - "kapacitord"
+      - "-config"
+      - "/etc/kapacitor/kapacitor.conf"
+    networks:
+      - back-tier
+  chronograf:
+    image: xiocode/chronograf
+    depends_on:
+      - influxdb
+    ports:
+      - "18000:10000"
+    environment:
+      CHRONOGRAF_BIND: 0.0.0.0:10000
+      CHRONOGRAF_LOCAL_DATABASE: /data/chronograf.db
+    volumes:
+      - chronograf_data:/data/
+      - ./chronograf/:/etc/chronograf/
+    networks:
+      - front-tier
+      - back-tier
+  grafana:
+    image: grafana/grafana
+    depends_on:
+      - influxdb
+    ports:
+      - "13000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+    networks:
+      - front-tier
+      - back-tier
+networks:
+  front-tier:
+    driver: bridge
+  back-tier:
+    driver: bridge
