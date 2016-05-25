@@ -20,6 +20,5 @@ RUN curl -fLsS -o /usr/local/bin/dumb-init https://github.com/Yelp/dumb-init/rel
 RUN apt-get clean && rm -rf /var/cache/apt/* && \
     rm -rf /var/lib/apt/lists/* && rm -rf /tmp/*
 
-RUN mkdir /var/run/sshd && \
-ssh-keygen -t rsa -f ~/.ssh/id_rsa -P '' && \
+RUN ssh-keygen -t rsa -f ~/.ssh/id_rsa -P '' && \
 cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys

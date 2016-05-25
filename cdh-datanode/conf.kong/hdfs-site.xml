@@ -19,15 +19,27 @@
 
 <configuration>
   <property>
-   <name>dfs.namenode.name.dir</name>
-   <value>file:///data/1/dfs/nn,file:///nfsmount/dfs/nn</value>
+      <name>dfs.namenode.secondary.http-address</name>
+      <value>master:9001</value>
+  </property>
+  <property>
+    <name>dfs.namenode.name.dir</name>
+    <value>file:/data/hadoop/dfs/name</value>
+  </property>
+  <property>
+    <name>dfs.datanode.data.dir</name>
+    <value>file:/data/hadoop/dfs/data</value>
+  </property>
+  <property>
+    <name>dfs.replication</name>
+    <value>2</value>
+  </property>
+  <property>
+    <name>dfs.webhdfs.enabled</name>
+    <value>true</value>
   </property>
   <property>
    <name>dfs.permissions.superusergroup</name>
    <value>hadoop</value>
-  </property>
-  <property>
-   <name>dfs.datanode.data.dir</name>
-   <value>file:///data/1/dfs/dn,file:///data/2/dfs/dn,file:///data/3/dfs/dn,file:///data/4/dfs/dn</value>
   </property>
 </configuration>

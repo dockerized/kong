@@ -5,12 +5,18 @@ RUN apt-get install -yq \
     hadoop-yarn-nodemanager \
     hadoop-hdfs-datanode \
     hadoop-mapreduce \
-    hadoop-mapreduce-historyserver \
-    hadoop-yarn-proxyserver \
-    hadoop-client
+    hadoop-client \
+    hadoop-lzo
 
-RUN mkdir -p /data/1/dfs/dn /data/2/dfs/dn /data/3/dfs/dn /data/4/dfs/dn
-RUN chown -R hdfs:hdfs /data/1/dfs/dn /data/2/dfs/dn /data/3/dfs/dn /data/4/dfs/dn
+COPY conf.kong/ /etc/hadoop/
+
+RUN update-alternatives --install /etc/hadoop/conf hadoop-conf /etc/hadoop/conf.kong 50
+RUN update-alternatives --set hadoop-conf /etc/hadoop/conf.kong
+
+RUN mkdir -p /data/hadoop/tmp/ /data/hadoop/yarn/local /data/hadoop/yarn/logs
+RUN chown -R hdfs:hdfs /data/hadoop/
+RUN chown -R yarn:yarn /data/hadoop/yarn/
+RUN sudo -u hdfs hadoop fs -chmod -R 1777  /data/hadoop/tmp/
 
 COPY entrypoint.sh /
 RUN chmod +x /entrypoint.sh
