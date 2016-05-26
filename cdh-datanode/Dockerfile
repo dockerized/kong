@@ -8,7 +8,7 @@ RUN apt-get install -yq \
     hadoop-client \
     hadoop-lzo
 
-COPY conf.kong/ /etc/hadoop/
+COPY conf.kong/ /etc/hadoop/conf.kong/
 
 RUN update-alternatives --install /etc/hadoop/conf hadoop-conf /etc/hadoop/conf.kong 50
 RUN update-alternatives --set hadoop-conf /etc/hadoop/conf.kong
