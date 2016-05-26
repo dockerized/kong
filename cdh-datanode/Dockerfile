@@ -16,7 +16,7 @@ RUN update-alternatives --set hadoop-conf /etc/hadoop/conf.kong
 RUN mkdir -p /data/hadoop/tmp/ /data/hadoop/yarn/local /data/hadoop/yarn/logs
 RUN chown -R hdfs:hdfs /data/hadoop/
 RUN chown -R yarn:yarn /data/hadoop/yarn/
-RUN sudo -u hdfs hadoop fs -chmod -R 1777  /data/hadoop/tmp/
+RUN chmod -R 1777  /data/hadoop/tmp/
 
 COPY entrypoint.sh /
 RUN chmod +x /entrypoint.sh
