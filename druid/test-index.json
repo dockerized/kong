@@ -5,7 +5,7 @@
       "type" : "hadoop",
       "inputSpec" : {
         "type" : "static",
-        "paths" : "test.csv"
+        "paths" : "/home/vagrant/kong/druid/test.csv"
       }
     },
     "dataSchema" : {
