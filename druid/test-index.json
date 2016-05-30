@@ -25,8 +25,6 @@
             "dimensions" : [
               "channel",
               "keywords",
-              "mem_pv",
-              "pv",
               "type"
             ]
           },
