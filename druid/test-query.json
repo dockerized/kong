@@ -9,7 +9,7 @@
   ],
   "postAggregations": [
     { "type": "arithmetic",
-      "name": "avg_usage",
+      "name": "total",
       "fn": "/",
       "fields": [
         { "type": "fieldAccess", "fieldName": "total_pv" }
