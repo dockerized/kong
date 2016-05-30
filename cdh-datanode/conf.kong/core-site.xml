@@ -24,7 +24,7 @@
   </property>
   <property>
     <name>hadoop.tmp.dir</name>
-    <value>file:/data/hadoop/tmp</value>
+    <value>file:///data/hadoop/tmp</value>
     <description>Abasefor other temporary directories.</description>
   </property>
   <property>

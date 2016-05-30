@@ -1,0 +1,75 @@
+{
+  "type" : "index_hadoop",
+  "spec" : {
+    "ioConfig" : {
+      "type" : "hadoop",
+      "inputSpec" : {
+        "type" : "static",
+        "paths" : "test.csv"
+      }
+    },
+    "dataSchema" : {
+      "dataSource" : "dxy-search",
+      "granularitySpec" : {
+        "type" : "uniform",
+        "segmentGranularity" : "day",
+        "queryGranularity" : "none",
+        "intervals" : ["2015-11-01/2016-03-01"]
+      },
+      "parser" : {
+        "type" : "string",
+        "parseSpec" : {
+          "format" : "csv",
+          "columns" : ["channel", "create_time", "keywords", "mem_pv", "pv", "type", "user_id", "url"],
+          "dimensionsSpec" : {
+            "dimensions" : [
+              "channel",
+              "keywords",
+              "mem_pv",
+              "pv",
+              "type"
+            ]
+          },
+          "timestampSpec" : {
+            "format" : "dd/MM/yy",
+            "column" : "create_time"
+          }
+        }
+      },
+      "metricsSpec" : [
+        {
+          "name" : "count",
+          "type" : "count"
+        },
+        {
+          "name" : "added",
+          "type" : "longSum",
+          "fieldName" : "added"
+        },
+        {
+          "name" : "deleted",
+          "type" : "longSum",
+          "fieldName" : "deleted"
+        },
+        {
+          "name" : "delta",
+          "type" : "longSum",
+          "fieldName" : "delta"
+        },
+        {
+          "name" : "user_unique",
+          "type" : "hyperUnique",
+          "fieldName" : "user"
+        }
+      ]
+    },
+    "tuningConfig" : {
+      "type" : "hadoop",
+      "partitionsSpec" : {
+        "type" : "hashed",
+        "targetPartitionSize" : 5000000
+      },
+      "jobProperties" : {}
+    }
+  }
+}

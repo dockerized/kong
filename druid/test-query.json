@@ -1,0 +1,20 @@
+{
+  "queryType": "groupBy",
+  "dataSource": "dxy-search",
+  "granularity": "day",
+  "dimensions": ["keywords", "channel", "type"],
+  "limitSpec": { "type": "default", "limit": 5000, "columns": ["keywords", "total_pv"] },
+  "aggregations": [
+    { "type": "longSum", "name": "total_pv", "fieldName": "pv" }
+  ],
+  "postAggregations": [
+    { "type": "arithmetic",
+      "name": "avg_usage",
+      "fn": "/",
+      "fields": [
+        { "type": "fieldAccess", "fieldName": "total_pv" }
+      ]
+    }
+  ],
+  "intervals": [ "2015-11-01T00:00:00.000/2016-03-01T00:00:00.000" ]
+}

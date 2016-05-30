@@ -13,10 +13,10 @@ COPY conf.kong/ /etc/hadoop/conf.kong/
 RUN update-alternatives --install /etc/hadoop/conf hadoop-conf /etc/hadoop/conf.kong 50
 RUN update-alternatives --set hadoop-conf /etc/hadoop/conf.kong
 
-RUN mkdir -p /data/hadoop/tmp/ /data/hadoop/yarn/local /data/hadoop/yarn/logs
+RUN mkdir -p /data/hadoop/tmp/ /data/hadoop/dfs/name /data/hadoop/dfs/data /data/hadoop/yarn/local /data/hadoop/yarn/logs
 RUN chown -R hdfs:hdfs /data/hadoop/
 RUN chown -R yarn:yarn /data/hadoop/yarn/
-RUN chmod -R 1777  /data/hadoop/tmp/
+RUN chmod -R 700 /data/hadoop/dfs/name /data/hadoop/dfs/data
 
 COPY entrypoint.sh /
 RUN chmod +x /entrypoint.sh

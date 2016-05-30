@@ -20,15 +20,15 @@
 <configuration>
   <property>
       <name>dfs.namenode.secondary.http-address</name>
-      <value>master:9001</value>
+      <value>master:50090</value>
   </property>
   <property>
     <name>dfs.namenode.name.dir</name>
-    <value>file:/data/hadoop/dfs/name</value>
+    <value>file:///data/hadoop/dfs/name</value>
   </property>
   <property>
     <name>dfs.datanode.data.dir</name>
-    <value>file:/data/hadoop/dfs/data</value>
+    <value>file:///data/hadoop/dfs/data</value>
   </property>
   <property>
     <name>dfs.replication</name>
