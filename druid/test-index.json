@@ -31,7 +31,7 @@
             ]
           },
           "timestampSpec" : {
-            "format" : "dd/MM/yy",
+            "format" : "MM/dd/yy",
             "column" : "create_time"
           }
         }
