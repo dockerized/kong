@@ -20,7 +20,7 @@
         "type" : "string",
         "parseSpec" : {
           "format" : "csv",
-          "columns" : ["channel", "create_time", "keywords", "mem_pv", "pv", "type", "user_id", "url"],
+          "columns" : ["channel", "create_time", "keywords", "type", "user_id", "url"],
           "dimensionsSpec" : {
             "dimensions" : [
               "channel",
@@ -42,24 +42,14 @@
           "type" : "count"
         },
         {
-          "name" : "added",
+          "name" : "mem_pv",
           "type" : "longSum",
-          "fieldName" : "added"
+          "fieldName" : "mem_pv"
         },
         {
-          "name" : "deleted",
+          "name" : "pv",
           "type" : "longSum",
-          "fieldName" : "deleted"
-        },
-        {
-          "name" : "delta",
-          "type" : "longSum",
-          "fieldName" : "delta"
-        },
-        {
-          "name" : "user_unique",
-          "type" : "hyperUnique",
-          "fieldName" : "user"
+          "fieldName" : "pv"
         }
       ]
     },
