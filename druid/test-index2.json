@@ -1,0 +1,59 @@
+{
+  "type" : "index_hadoop",
+  "spec" : {
+    "ioConfig" : {
+      "type" : "hadoop",
+      "inputSpec" : {
+        "type" : "static",
+        "paths" : "/home/vagrant/kong/druid/test2.csv"
+      }
+    },
+    "dataSchema" : {
+      "dataSource" : "dxy-doc-1",
+      "granularitySpec" : {
+        "type" : "uniform",
+        "segmentGranularity" : "day",
+        "queryGranularity" : "none",
+        "intervals" : ["2016-01-01/2016-01-01"]
+      },
+      "parser" : {
+        "type" : "string",
+        "parseSpec" : {
+          "format" : "csv",
+          "columns" : ["user_id", "flag", "level", "gender", "province", "city", "hospital_level", "keshi", "zhicheng", "xueli", "PostClicked", "PostPicked", "Lastlogintime", "BBSpost", "BBSscore", "BBSvote", "Follower", "Following", "Visit", "createtime", "favboard1", "favboard2", "favboard3", "created_at"],
+          "dimensionsSpec" : {
+            "dimensions" : [
+              "flag",
+              "level",
+              "gender",
+              "province",
+              "city",
+              "hospital_level",
+              "keshi",
+              "zhicheng",
+              "xueli",
+            ]
+          },
+          "timestampSpec" : {
+            "format" : "yyyy/MM/dd",
+            "column" : "created_at"
+          }
+        }
+      },
+      "metricsSpec" : [
+        {
+          "name" : "count",
+          "type" : "count"
+        }
+      ]
+    },
+    "tuningConfig" : {
+      "type" : "hadoop",
+      "partitionsSpec" : {
+        "type" : "hashed",
+        "targetPartitionSize" : 5000000
+      },
+      "jobProperties" : {}
+    }
+  }
+}
