@@ -9,12 +9,12 @@
       }
     },
     "dataSchema" : {
-      "dataSource" : "dxy-search",
+      "dataSource" : "dxy-search-2",
       "granularitySpec" : {
         "type" : "uniform",
         "segmentGranularity" : "day",
         "queryGranularity" : "none",
-        "intervals" : ["2015-11-01/2016-03-01"]
+        "intervals" : ["2016-01-01/2016-03-01"]
       },
       "parser" : {
         "type" : "string",
@@ -35,10 +35,6 @@
         }
       },
       "metricsSpec" : [
-        {
-          "name" : "count",
-          "type" : "count"
-        },
         {
           "name" : "mem_pv",
           "type" : "longSum",
