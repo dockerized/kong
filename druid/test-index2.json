@@ -14,7 +14,7 @@
         "type" : "uniform",
         "segmentGranularity" : "day",
         "queryGranularity" : "none",
-        "intervals" : ["2016-01-01/2016-01-01"]
+        "intervals" : ["2016-01-01/2016-01-02"]
       },
       "parser" : {
         "type" : "string",
