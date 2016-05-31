@@ -31,7 +31,10 @@
               "hospital_level",
               "keshi",
               "zhicheng",
-              "xueli"
+              "xueli",
+              "favboard1",
+              "favboard2",
+              "favboard3"
             ]
           },
           "timestampSpec" : {
