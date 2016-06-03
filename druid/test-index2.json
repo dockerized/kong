@@ -47,7 +47,7 @@
       "type": "index",
       "firehose": {
         "type": "local",
-        "baseDir": "./",
+        "baseDir": "/home/vagrant/kong/druid/",
         "filter": "test2.csv"
       }
     },
