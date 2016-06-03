@@ -1,11 +1,12 @@
 {
-  "type" : "index_hadoop",
+  "type" : "index",
   "spec" : {
-    "ioConfig" : {
-      "type" : "hadoop",
-      "inputSpec" : {
-        "type" : "static",
-        "paths" : "/home/vagrant/kong/druid/test2.csv"
+      "ioConfig": {
+      "type": "index",
+      "firehose": {
+        "type": "local",
+        "baseDir": ".",
+        "filter": "test2.csv"
       }
     },
     "dataSchema" : {
@@ -50,13 +51,9 @@
         }
       ]
     },
-    "tuningConfig" : {
-      "type" : "hadoop",
-      "partitionsSpec" : {
-        "type" : "hashed",
-        "targetPartitionSize" : 5000000
-      },
-      "jobProperties" : {}
+    "tuningConfig": {
+      "type": "index",
+      "targetPartitionSize": 0,
+      "rowFlushBoundary": 0
     }
-  }
 }
