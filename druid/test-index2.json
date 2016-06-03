@@ -47,7 +47,7 @@
       "type": "index",
       "firehose": {
         "type": "local",
-        "baseDir": ".",
+        "baseDir": "./",
         "filter": "test2.csv"
       }
     },
