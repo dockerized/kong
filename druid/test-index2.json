@@ -1,14 +1,6 @@
 {
-  "type" : "index",
-  "spec" : {
-      "ioConfig": {
-      "type": "index",
-      "firehose": {
-        "type": "local",
-        "baseDir": ".",
-        "filter": "test2.csv"
-      }
-    },
+  "type": "index",
+  "spec": {
     "dataSchema" : {
       "dataSource" : "dxy-doc-1",
       "granularitySpec" : {
@@ -51,9 +43,18 @@
         }
       ]
     },
+    "ioConfig": {
+      "type": "index",
+      "firehose": {
+        "type": "local",
+        "baseDir": ".",
+        "filter": "test2.csv"
+      }
+    },
     "tuningConfig": {
       "type": "index",
       "targetPartitionSize": 0,
       "rowFlushBoundary": 0
     }
+  }
 }
